@@ -6,7 +6,7 @@ const LoggedOutRouter: React.FC = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<CreateAccount />} />
+        <Route path="/createAccount" element={<CreateAccount />} />
         <Route path="/" element={<Login />} />
       </Routes>
     </Router>
