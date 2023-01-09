@@ -1,5 +1,6 @@
 import { ApolloError, gql, useMutation } from "@apollo/client";
 import { useForm } from "react-hook-form";
+import Helmet from "react-helmet";
 import { Link } from "react-router-dom";
 import { Button } from "../components/Button";
 import { FormError } from "../components/form-error";
@@ -8,6 +9,7 @@ import {
   loginMutation,
   loginMutationVariables,
 } from "../__generated__/loginMutation";
+import { isLoggedInVar } from "../apollo";
 
 const LOGIN_MUTATION = gql`
   mutation loginMutation($loginInput: LoginInput!) {
@@ -24,7 +26,7 @@ interface ILoginForm {
   password: string;
 }
 
-const Login: React.FC = () => {
+export const Login: React.FC = () => {
   const {
     register,
     getValues,
@@ -39,7 +41,8 @@ const Login: React.FC = () => {
       login: { ok, token },
     } = data;
     if (ok) {
-      console.log("toklen", token);
+      console.log(token);
+      isLoggedInVar(true);
     }
   };
 
@@ -52,8 +55,6 @@ const Login: React.FC = () => {
     onCompleted,
     onError,
   });
-
-  //15.7부터
 
   const onSubmit = () => {
     if (!loading) {
@@ -70,6 +71,9 @@ const Login: React.FC = () => {
   };
   return (
     <div className="h-screen flex items-center flex-col mt-10 lg:mt-28">
+      <Helmet>
+        <title>Login | Nuber Eats</title>
+      </Helmet>
       <div className="w-full max-w-screen-sm flex flex-col px-5 items-center">
         <img src={nuberLogo} alt="" className="w-52 mb-10" />
         <h3 className="w-full font-medium text-left text-3xl mb-5">
@@ -121,5 +125,3 @@ const Login: React.FC = () => {
     </div>
   );
 };
-
-export default Login;
