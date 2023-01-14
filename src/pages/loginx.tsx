@@ -1,6 +1,6 @@
 import { ApolloError, gql, useMutation } from "@apollo/client";
 import { useForm } from "react-hook-form";
-import Helmet from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { Button } from "../components/Button";
 import { FormError } from "../components/form-error";
@@ -9,7 +9,8 @@ import {
   loginMutation,
   loginMutationVariables,
 } from "../__generated__/loginMutation";
-import { isLoggedInVar } from "../apollo";
+import { authToken, isLoggedInVar } from "../apollo";
+import { LOCALSTORAGE_TOKEN } from "../contants";
 
 const LOGIN_MUTATION = gql`
   mutation loginMutation($loginInput: LoginInput!) {
@@ -40,8 +41,9 @@ export const Login: React.FC = () => {
     const {
       login: { ok, token },
     } = data;
-    if (ok) {
-      console.log(token);
+    if (ok && token) {
+      localStorage.setItem(LOCALSTORAGE_TOKEN, token);
+      authToken(token);
       isLoggedInVar(true);
     }
   };

@@ -1,6 +1,6 @@
 import { gql, useMutation } from "@apollo/client";
 import { useForm } from "react-hook-form";
-import Helmet from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../components/Button";
 import { FormError } from "../components/form-error";
@@ -44,6 +44,7 @@ export const CreateAccount: React.FC = () => {
       createAccount: { ok },
     } = data;
     if (ok) {
+      alert("Account Created! Log in now!");
       navigate("/login");
     }
   };

@@ -3,6 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { client } from "./apollo";
 import App from "./App";
+import { HelmetProvider } from "react-helmet-async";
 import reportWebVitals from "./reportWebVitals";
 import "./styles/styles.css";
 
@@ -11,11 +12,13 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-  <ApolloProvider client={client}>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  </ApolloProvider>
+  <React.StrictMode>
+    <ApolloProvider client={client}>
+      <HelmetProvider>
+        <App />
+      </HelmetProvider>
+    </ApolloProvider>
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
