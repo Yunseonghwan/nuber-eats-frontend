@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { NotFound } from "../pages/client/404";
 import { CreateAccount } from "../pages/create-account";
 import { Login } from "../pages/loginx";
 
@@ -7,7 +8,8 @@ const LoggedOutRouter: React.FC = () => {
     <Router>
       <Routes>
         <Route path="/create-account" element={<CreateAccount />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Login />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );
