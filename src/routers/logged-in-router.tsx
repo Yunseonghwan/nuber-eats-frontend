@@ -4,10 +4,12 @@ import { useMe } from "../hooks/useMe";
 import { NotFound } from "../pages/client/404";
 
 import { Restaurants } from "../pages/client/restaurants";
+import { ConfirmEmail } from "../pages/user/confirm-email";
 
 const ClientRouter = () => (
   <Routes>
     <Route path="/" element={<Restaurants />} />
+    <Route path="/confirm" element={<ConfirmEmail />} />
     <Route path="*" element={<NotFound />} />
   </Routes>
 );
