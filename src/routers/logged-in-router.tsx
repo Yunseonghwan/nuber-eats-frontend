@@ -5,11 +5,13 @@ import { NotFound } from "../pages/client/404";
 
 import { Restaurants } from "../pages/client/restaurants";
 import { ConfirmEmail } from "../pages/user/confirm-email";
+import { EditProfile } from "../pages/user/edit-profile";
 
 const ClientRouter = () => (
   <Routes>
     <Route path="/" element={<Restaurants />} />
     <Route path="/confirm" element={<ConfirmEmail />} />
+    <Route path="/edit-profile" element={<EditProfile />} />
     <Route path="*" element={<NotFound />} />
   </Routes>
 );

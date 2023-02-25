@@ -86,7 +86,11 @@ export const Login: React.FC = () => {
           className="grid gap-3 mt-5 w-full mb-5"
         >
           <input
-            {...register("email", { required: "Email is required" })}
+            {...register("email", {
+              required: "Email is required",
+              pattern:
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+            })}
             name="email"
             type="email"
             required
