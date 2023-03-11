@@ -1,12 +1,19 @@
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useMe } from "../hooks/useMe";
 import nuberLogo from "../images/logo.svg";
 
 export const Header: React.FC = () => {
+  const navigate = useNavigate();
   const { data } = useMe();
+
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate(0);
+  };
+
   return (
     <>
       {!data?.me.verified && (
@@ -23,6 +30,9 @@ export const Header: React.FC = () => {
             <Link to="/edit-profile">
               <FontAwesomeIcon icon={faUser} className="text-3xl" />
             </Link>
+            <span onClick={handleLogout} style={{ cursor: "pointer" }}>
+              Logout
+            </span>
           </span>
         </div>
       </header>
